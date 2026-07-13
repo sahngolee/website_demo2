@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1656,3 +1659,24 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* 1. Fix the outer container layout and size */
+.logo {
+  display: flex !important;
+  justify-content: center;   /* Centers logo horizontally */
+  align-items: center;       /* Centers logo vertically */
+  margin: 0 auto;            /* Centers the entire container on the page */
+  width: 9rem !important;    /* Outer width container size */
+  height: 4rem !important;   /* Outer height container size */
+  line-height: 9rem !important;
+  border: none !important; 
+  border-radius: 0 !important; 
+}
+
+/* 2. Control the size and scaling of the PNG image */
+.logo .custom-logo {
+  display: block;
+  width: 200px;               /* Change this number (e.g., 100px, 120px) to scale it up or down */
+  max-width: 100%;
+  height: auto;              /* Maintains image proportions so it doesn't distort */
+}
