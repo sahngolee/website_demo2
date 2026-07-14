@@ -1651,8 +1651,8 @@ input, select, textarea {
   justify-content: center;   /* Centers logo horizontally */
   align-items: center;       /* Centers logo vertically */
   margin: 0 auto;            /* Centers the entire container on the page */
-  width: 9rem !important;    /* Outer width container size */
-  height: 4rem !important;   /* Outer height container size */
+  width: 12rem !important;    /* Outer width container size */
+  height: 6rem !important;   /* Outer height container size */
   line-height: 9rem !important;
   border: none !important; 
   border-radius: 0 !important; 
