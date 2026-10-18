@@ -108,6 +108,45 @@
 								</p>
 							</article>
 
+							<script>
+							let currentLang = 'kr'; // 기본 언어 설정 (한국어)
+
+							function toggleLanguage() {
+								const krLabel = document.getElementById('krLabel');
+								const enLabel = document.getElementById('enLabel');
+								const textElements = document.querySelectorAll('[data-kr][data-en]');
+								const htmlElements = document.querySelectorAll('[data-kr-html][data-en-html]');
+
+								if (currentLang === 'kr') {
+									// 영문으로 전환
+									textElements.forEach(el => el.textContent = el.getAttribute('data-en'));
+									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-en-html'));
+									
+									// 버튼 표시 변경 (EN 활성화)
+									krLabel.style.opacity = '0.5';
+									krLabel.style.textDecoration = 'none';
+									enLabel.style.opacity = '1';
+									enLabel.style.textDecoration = 'underline';
+									
+									currentLang = 'en';
+									document.documentElement.lang = 'en';
+								} else {
+									// 한국어로 전환
+									textElements.forEach(el => el.textContent = el.getAttribute('data-kr'));
+									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-kr-html'));
+									
+									// 버튼 표시 변경 (KR 활성화)
+									krLabel.style.opacity = '1';
+									krLabel.style.textDecoration = 'underline';
+									enLabel.style.opacity = '0.5';
+									enLabel.style.textDecoration = 'none';
+									
+									currentLang = 'kr';
+									document.documentElement.lang = 'ko';
+								}
+							}
+							</script>
+
 						<!-- Services -->
 							<article id="services">
 								<h2 class="major">Services</h2>
