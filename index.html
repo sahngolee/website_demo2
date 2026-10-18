@@ -44,15 +44,16 @@
 					<div id="main">
 
 						<!-- Intro -->
-							<article id="intro" style="position: relative;">
-								<!-- 우측 상단 KR / EN 토글 버튼 (배경/테두리 제거) -->
-								<div style="text-align: right; margin-bottom: 1rem;">
-									<button id="langToggleBtn" onclick="toggleLanguage()" style="cursor: pointer; background: transparent; border: none; padding: 0.4em 0.8em; font-weight: bold; font-size: 0.75rem; color: inherit;">
+							<article id="intro">
+								<h2 class="major">Intro</h2>
+
+								<!-- 우측 상단 KR / EN 토글 버튼 (제목 아래로 이동 & 여백 추가) -->
+								<div style="text-align: right; margin-top: 0.5rem; margin-bottom: 1.5rem;">
+									<button id="langToggleBtn" onclick="toggleLanguage()" style="cursor: pointer; background: transparent; border: none; padding: 0.4em 0.8em; font-weight: bold; font-size: 0.9rem; color: inherit;">
 										<span id="krLabel" style="opacity: 1; text-decoration: underline;">KR</span> / <span id="enLabel" style="opacity: 0.5;">EN</span>
 									</button>
 								</div>
 
-								<h2 class="major">Intro</h2>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
 
 								<!-- 단락 1 -->
@@ -108,46 +109,6 @@
 									2026년 서울에서 Design Technology Network를 설립했습니다.
 								</p>
 							</article>
-
-							<!-- 언어 전환을 위한 JavaScript -->
-							<script>
-							let currentLang = 'kr'; // 기본 언어 설정 (한국어)
-
-							function toggleLanguage() {
-								const krLabel = document.getElementById('krLabel');
-								const enLabel = document.getElementById('enLabel');
-								const textElements = document.querySelectorAll('[data-kr][data-en]');
-								const htmlElements = document.querySelectorAll('[data-kr-html][data-en-html]');
-
-								if (currentLang === 'kr') {
-									// 영문으로 전환
-									textElements.forEach(el => el.textContent = el.getAttribute('data-en'));
-									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-en-html'));
-									
-									// 버튼 표시 변경 (EN 활성화)
-									krLabel.style.opacity = '0.5';
-									krLabel.style.textDecoration = 'none';
-									enLabel.style.opacity = '1';
-									enLabel.style.textDecoration = 'underline';
-									
-									currentLang = 'en';
-									document.documentElement.lang = 'en';
-								} else {
-									// 한국어로 전환
-									textElements.forEach(el => el.textContent = el.getAttribute('data-kr'));
-									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-kr-html'));
-									
-									// 버튼 표시 변경 (KR 활성화)
-									krLabel.style.opacity = '1';
-									krLabel.style.textDecoration = 'underline';
-									enLabel.style.opacity = '0.5';
-									enLabel.style.textDecoration = 'none';
-									
-									currentLang = 'kr';
-									document.documentElement.lang = 'ko';
-								}
-							}
-							</script>
 
 						<!-- Services -->
 							<article id="services">
