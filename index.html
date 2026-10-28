@@ -50,7 +50,7 @@
 									
 									<!-- 흰색 박스/테두리를 완전히 제거한 KR / EN 토글 버튼 -->
 									<button id="langToggleBtn" onclick="toggleLanguage()" style="cursor: pointer; background: transparent !important; border: none !important; box-shadow: none !important; outline: none !important; padding: 0.2em 0.4em; font-weight: bold; font-size: 0.9rem; color: inherit;">
-										<span id="krLabel" style="opacity: 1; text-decoration: underline;">KR</span> / <span id="enLabel" style="opacity: 0.5;">EN</span>
+										<span class="krLabel" style="opacity: 1; text-decoration: underline;">KR</span> / <span class="enLabel" style="opacity: 0.5;">EN</span>
 									</button>
 								</div>
 
@@ -114,39 +114,53 @@
 							let currentLang = 'kr'; // 기본 언어 설정 (한국어)
 
 							function toggleLanguage() {
-								const krLabel = document.getElementById('krLabel');
-								const enLabel = document.getElementById('enLabel');
-								const textElements = document.querySelectorAll('[data-kr][data-en]');
-								const htmlElements = document.querySelectorAll('[data-kr-html][data-en-html]');
+							// 1. 현재 <html> 태그의 lang 속성을 읽어옴 (기본값 'ko')
+							const currentLang = document.documentElement.getAttribute('lang') || 'ko';
+							
+							// 2. 페이지 내 모든 라벨 및 번역 대상 요소 선택
+							const krLabels = document.querySelectorAll('.krLabel');
+							const enLabels = document.querySelectorAll('.enLabel');
+							const textElements = document.querySelectorAll('[data-kr][data-en]');
+							const htmlElements = document.querySelectorAll('[data-kr-html][data-en-html]');
 
-								if (currentLang === 'kr') {
-									// 영문으로 전환
-									textElements.forEach(el => el.textContent = el.getAttribute('data-en'));
-									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-en-html'));
-									
-									// 버튼 표시 변경 (EN 활성화)
-									krLabel.style.opacity = '0.5';
-									krLabel.style.textDecoration = 'none';
-									enLabel.style.opacity = '1';
-									enLabel.style.textDecoration = 'underline';
-									
-									currentLang = 'en';
-									document.documentElement.lang = 'en';
-								} else {
-									// 한국어로 전환
-									textElements.forEach(el => el.textContent = el.getAttribute('data-kr'));
-									htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-kr-html'));
-									
-									// 버튼 표시 변경 (KR 활성화)
-									krLabel.style.opacity = '1';
-									krLabel.style.textDecoration = 'underline';
-									enLabel.style.opacity = '0.5';
-									enLabel.style.textDecoration = 'none';
-									
-									currentLang = 'kr';
-									document.documentElement.lang = 'ko';
-								}
+							if (currentLang === 'ko' || currentLang === 'kr') {
+								// === [영어(EN)로 전환] ===
+								textElements.forEach(el => el.textContent = el.getAttribute('data-en'));
+								htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-en-html'));
+								
+								// KR 라벨: 흐리게, 밑줄 제거
+								krLabels.forEach(el => {
+									el.style.opacity = '0.5';
+									el.style.textDecoration = 'none';
+								});
+								// EN 라벨: 진하게, 밑줄 추가
+								enLabels.forEach(el => {
+									el.style.opacity = '1';
+									el.style.textDecoration = 'underline';
+								});
+								
+								// 문서 상태를 영어로 설정
+								document.documentElement.setAttribute('lang', 'en');
+							} else {
+								// === [한국어(KR)로 전환] ===
+								textElements.forEach(el => el.textContent = el.getAttribute('data-kr'));
+								htmlElements.forEach(el => el.innerHTML = el.getAttribute('data-kr-html'));
+								
+								// KR 라벨: 진하게, 밑줄 추가
+								krLabels.forEach(el => {
+									el.style.opacity = '1';
+									el.style.textDecoration = 'underline';
+								});
+								// EN 라벨: 흐리게, 밑줄 제거
+								enLabels.forEach(el => {
+									el.style.opacity = '0.5';
+									el.style.textDecoration = 'none';
+								});
+								
+								// 문서 상태를 한국어로 설정
+								document.documentElement.setAttribute('lang', 'ko');
 							}
+						}
 							</script>
 
 						<!-- Services -->
